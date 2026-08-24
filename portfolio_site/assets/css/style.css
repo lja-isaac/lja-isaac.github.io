@@ -1,0 +1,162 @@
+:root {
+    --neon-blue: #00f2ff;
+    --neon-blue-rgb: 0, 242, 255;
+    --neon-dark-blue: #002741;
+    --neon-dark-blue-rgb: 0, 39, 65;
+    --neon-purple: #bc13fe;
+    --dark-bg: #0d0d0d;
+    --card-bg: #1a1a1a;
+    --navbar-height: 56px;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: var(--navbar-height);
+    /* Offset for fixed navbar */
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    transition: transform 0.3s ease-in-out;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
+}
+
+#hero {
+    /* background: linear-gradient(135deg, #0d0d0d, #1a1a1a); */
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    /* Prevent pattern from overflowing */
+}
+
+/* Circuit Board Pattern */
+.circuit-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Circuit Board Pattern */
+.circuit-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.circuit-base,
+.circuit-spotlight {
+    position: absolute;
+    inset: 0;
+    /* More authentic circuit board pattern SVG */
+    /* background-image: url("data:image/svg+xml;utf8,<svg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><path d='M20 20h40v40H20zM120 120h40v40h-40zM40 80h80M80 40v80M140 100h20M100 140v20' stroke='%2300f2ff' stroke-width='1' fill='none' stroke-opacity='0.5'/><circle cx='60' cy='60' r='4' fill='%2300f2ff' fill-opacity='0.8'/><circle cx='140' cy='140' r='4' fill='%2300f2ff' fill-opacity='0.8'/></svg>");
+    */
+
+    background-image: url("../img/hero\ bg.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-attachment: fixed; */
+    background-size: cover;
+}
+
+.circuit-base {
+    opacity: 0.2;
+    /* Slightly more visible base */
+}
+
+.circuit-spotlight {
+    opacity: 0.9;
+    /* Much more pronounced glow */
+    mask-image: radial-gradient(200px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), white, transparent);
+    -webkit-mask-image: radial-gradient(200px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), white, transparent);
+}
+
+.text-neon {
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.card {
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section#about {
+    div#skills-container{
+        position: relative;
+        width: 500px;
+        height: 500px;
+
+    }
+    div#skills-container > *{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        translate: -50% -50%;
+        width: 240px;
+        height: 240px;
+    }
+
+    svg.skills-circle {
+        overflow: visible;
+    }
+
+    circle.skills-circle-animated {
+        fill: rgb(var(--neon-dark-blue-rgb));
+        fill-opacity: 0;
+        stroke: var(--neon-blue);
+        stroke-width: 7;
+        stroke-linecap: round;
+
+        /*
+    r = 90
+    circumference ≈ 565.49
+    */
+        stroke-dasharray: 565.49;
+        stroke-dashoffset: 565.49;
+
+        /*
+    Starts at the top of the circle
+    */
+        transform: rotate(-90deg);
+        transform-origin: center;
+    }
+
+    div#div-all-skills{
+    }
+
+    div#div-all-skills > div.div-skills{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        translate: -50% -50%;
+        opacity: 0;
+    }
+}
