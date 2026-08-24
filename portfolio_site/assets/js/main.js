@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.add('hidden');
         }
+
+        ScrollParallexAnimation(currentScrollY);
     });
 
     // Fade-in animation logic
@@ -89,7 +91,7 @@ function animateSkills() {
 
     const timeline = createTimeline({
         easing: "easeInOutCubic",
-        delay: 500,
+        delay: 100,
         defaults: { duration: 750 },
         autoplay: onScroll({
             target: circle,
@@ -113,7 +115,8 @@ function animateSkills() {
     );
 
     for (let skill of skillObjs) {
-        let skillObjElemStr = `<div id="skill-${skill.id}" class="d-inline-block flex-column text-center div-skills">
+        skill.elemId = `skill-${skill.id}`;
+        let skillObjElemStr = `<div id="${skill.elemId}" class="d-inline-block flex-column text-center div-skills">
                             <i class="${skill.iconClass} colored display-4"></i>
                             <p>${skill.name}</p>
                         </div>`;
@@ -129,7 +132,7 @@ function animateSkills() {
 
         const x = radius * Math.cos(angle);
         const y = radius * Math.sin(angle);
-        let skillAnimation = animate(`#skill-${skill.id}`, {
+        let skillAnimation = animate(`#${skill.elemId}`, {
             x: x,
             y: y,
             opacity: 1,
@@ -142,6 +145,16 @@ function animateSkills() {
     }
 
     // timeline.onComplete = animateJsFloatRandomly;
+    timeline.onComplete = () => {
+        document.querySelectorAll(".div-skills").forEach((element) => {
+            element.addEventListener("mouseenter", (event) => {
+                OnMouseEnterSkill(event);
+            });
+            element.addEventListener("mouseleave", (event) => {
+                OnMouseLeaveSkill(event);
+            });
+        });
+    };
 }
 
 function animateJsFloatRandomly() {
@@ -157,5 +170,38 @@ function animateJsFloatRandomly() {
                 onComplete: animateJsFloatRandomly
             }
         );
+    }
+}
+
+const skillDescription = document.getElementById("div-skill-level");
+function OnMouseEnterSkill(e) {
+    let skill = null;
+    let skillId = e.target.id;
+    for (const currSkill of skillObjs) {
+        if (skillId == currSkill.elemId) {
+            skill = currSkill;
+            break;
+        }
+    }
+
+    if (skill == null) {
+        return;
+    }
+
+    skillDescription.innerHTML = skill.name;
+}
+
+function OnMouseLeaveSkill(e) {
+    skillDescription.innerHTML = "";
+}
+
+const aboutText = document.getElementById("about-text");
+function ScrollParallexAnimation(scrollY) {
+    console.log(scrollY);
+    if (scrollY > 700) {
+        aboutText.style.left = "0px";
+    }
+    else {
+        aboutText.style.left = scrollY - 700 + "px";
     }
 }
