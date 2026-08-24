@@ -19,7 +19,7 @@ body {
 
 .navbar {
     background-color: rgba(0, 0, 0, 0.8) !important;
-    transition: transform 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     position: fixed;
     top: 0;
     width: 100%;
@@ -27,7 +27,10 @@ body {
 }
 
 .navbar.hidden {
-    transform: translateY(-100%);
+    opacity: 0.5;
+}
+.navbar.hidden:hover {
+    opacity: 1;
 }
 
 #hero {
@@ -38,47 +41,11 @@ body {
     /* Prevent pattern from overflowing */
 }
 
-/* Circuit Board Pattern */
-.circuit-container {
+#hero-bg {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 0;
-}
-
-/* Circuit Board Pattern */
-.circuit-container {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.circuit-base,
-.circuit-spotlight {
-    position: absolute;
-    inset: 0;
-    /* More authentic circuit board pattern SVG */
-    /* background-image: url("data:image/svg+xml;utf8,<svg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><path d='M20 20h40v40H20zM120 120h40v40h-40zM40 80h80M80 40v80M140 100h20M100 140v20' stroke='%2300f2ff' stroke-width='1' fill='none' stroke-opacity='0.5'/><circle cx='60' cy='60' r='4' fill='%2300f2ff' fill-opacity='0.8'/><circle cx='140' cy='140' r='4' fill='%2300f2ff' fill-opacity='0.8'/></svg>");
-    */
-
-    background-image: url("../img/hero\ bg.jpeg");
-    background-repeat: no-repeat;
-    background-position: center;
-    /* background-attachment: fixed; */
-    background-size: cover;
-}
-
-.circuit-base {
-    opacity: 0.2;
-    /* Slightly more visible base */
-}
-
-.circuit-spotlight {
-    opacity: 0.9;
-    /* Much more pronounced glow */
-    mask-image: radial-gradient(200px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), white, transparent);
-    -webkit-mask-image: radial-gradient(200px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), white, transparent);
 }
 
 .text-neon {

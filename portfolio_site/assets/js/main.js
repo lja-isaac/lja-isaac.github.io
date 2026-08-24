@@ -4,25 +4,22 @@ const { animate, createTimer, createTimeline, utils, onScroll } = anime;
 // Portfolio main JavaScript
 document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
-    const hero = document.getElementById('hero');
+
+    document.getElementsByTagName("main")[0].style.marginTop = -navbar.clientHeight + "px";
 
     // Initially hide navbar
+    const navbarHiddenThreshold = window.innerHeight * 0.8;
     navbar.classList.add('hidden');
 
     window.addEventListener('scroll', (e) => {
         const currentScrollY = window.scrollY;
 
         // // Navbar visibility logic
-        // if (currentScrollY > threshold) {
-        //     navbar.classList.remove('hidden');
-        // } else {
-        //     navbar.classList.add('hidden');
-        // }
-    });
-
-    // Circuit board glow effect
-    window.addEventListener('mousemove', (e) => {
-        heroBackgroundMouseGlow(e);
+        if (currentScrollY > navbarHiddenThreshold) {
+            navbar.classList.remove('hidden');
+        } else {
+            navbar.classList.add('hidden');
+        }
     });
 
     // Fade-in animation logic
@@ -40,14 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animateSkills();
 });
-
-function heroBackgroundMouseGlow(e) {
-    const rect = hero.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    hero.style.setProperty('--mouse-x', `${x}px`);
-    hero.style.setProperty('--mouse-y', `${y}px`);
-}
 
 const divSkills = document.querySelector('#div-all-skills');
 let skillObjs = [
