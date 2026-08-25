@@ -142,7 +142,7 @@ section#about {
         overflow: visible;
     }
 
-    circle.skills-circle-animated {
+    circle.skill-circle-animated {
         fill: var(--neon-dark-blue);
         fill-opacity: 0;
         stroke: var(--neon-teal);
@@ -174,22 +174,22 @@ section#about {
         opacity: 0;
     }
 
-    #skills-description{
+    #skill-description{
         display: inline-block;
     }
 
-    .skills-bar-svg{
+    .skill-bar-svg{
         width: 150px;
     }
 
-    line.skills-bar{
+    line.skill-bar{
         stroke-width: 3;
         stroke-dasharray: 17 4;
     }
-    line.skills-bar-level{
+    line.skill-bar-level{
         stroke: var(--neon-green);
     }
-    line.skills-bar-empty{
+    line.skill-bar-empty{
         stroke: var(--gray);
     }
 }

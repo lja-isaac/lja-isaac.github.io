@@ -85,7 +85,7 @@ function animateSkills() {
     const container = null;
     const debug = true;
 
-    const circle = utils.$('.skills-circle-animated');
+    const circle = utils.$('.skill-circle-animated');
 
     const circumference = 2 * Math.PI * 90;
 
@@ -174,6 +174,7 @@ function animateJsFloatRandomly() {
 }
 
 const skillDescription = document.getElementById("skill-description");
+const skillBars = $(".skill-bar-level");
 function OnMouseEnterSkill(e) {
     let skill = null;
     let skillId = e.target.id;
@@ -189,18 +190,26 @@ function OnMouseEnterSkill(e) {
     }
 
     skillDescription.innerHTML = skill.name;
+    $(skillBars[0]).attr('x2', clamp(skill.level, 0, 0.5) * 200);
+    $(skillBars[1]).attr('x2', clamp(skill.level - 0.5, 0, 0.5) * 200);
+}
+
+function clamp(num, min, max) {
+    return Math.min(Math.max(num, min), max);
 }
 
 function OnMouseLeaveSkill(e) {
     skillDescription.innerHTML = "";
+    $(skillBars[0]).attr('x2', 0);
+    $(skillBars[1]).attr('x2', 0);
 }
 
 const aboutText = document.getElementById("about-text");
 const circuitBg = document.querySelector(".circuit-bg");
 function ScrollParallexAnimation(scrollY) {
     // console.log(scrollY);
-    aboutText.style.left = ParallexFunction(scrollY, 650, 0, 3) + "px";
-    circuitBg.style.scale = Math.max(1, 1.5-ParallexFunction(scrollY, 1900, 0, -0.0008));
+    aboutText.style.left = ParallexFunction(scrollY, 500, 0, 3) + "px";
+    circuitBg.style.scale = Math.max(1, 1.5 - ParallexFunction(scrollY, 1900, 0, -0.0008));
 }
 
 function ParallexFunction(scrollY, threshold, offset = 0, speed = 1) {
