@@ -196,13 +196,17 @@ function OnMouseLeaveSkill(e) {
 }
 
 const aboutText = document.getElementById("about-text");
+const circuitBg = document.querySelector(".circuit-bg");
 function ScrollParallexAnimation(scrollY) {
-    aboutText.style.left = ParallexFunction(scrollY, 650, 3) + "px";
+    // console.log(scrollY);
+    aboutText.style.left = ParallexFunction(scrollY, 650, 0, 3) + "px";
+    circuitBg.style.scale = Math.max(1, 1.5-ParallexFunction(scrollY, 1900, 0, -0.0008));
 }
 
-function ParallexFunction(scrollY, threshold, speed = 1) {
-    if (scrollY > threshold) {
+function ParallexFunction(scrollY, threshold, offset = 0, speed = 1) {
+    let val = scrollY - offset;
+    if (val > threshold) {
         return 0;
     }
-    return (scrollY - threshold) * speed;
+    return (val - threshold) * speed;
 }

@@ -66,6 +66,20 @@ body {
     opacity: 1;
 }
 
+.circuit-bg{
+    position:absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.2;
+    
+    background-image: url("../img/hero\ bg.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-attachment: fixed; */
+    background-size: cover;
+    scale: 1;
+}
+
 #hero {
     /* background: linear-gradient(135deg, #0d0d0d, #1a1a1a); */
     position: relative;
