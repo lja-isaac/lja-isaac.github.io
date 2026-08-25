@@ -173,7 +173,7 @@ function animateJsFloatRandomly() {
     }
 }
 
-const skillDescription = document.getElementById("div-skill-level");
+const skillDescription = document.getElementById("skill-description");
 function OnMouseEnterSkill(e) {
     let skill = null;
     let skillId = e.target.id;
@@ -197,11 +197,12 @@ function OnMouseLeaveSkill(e) {
 
 const aboutText = document.getElementById("about-text");
 function ScrollParallexAnimation(scrollY) {
-    console.log(scrollY);
-    if (scrollY > 700) {
-        aboutText.style.left = "0px";
+    aboutText.style.left = ParallexFunction(scrollY, 650, 3) + "px";
+}
+
+function ParallexFunction(scrollY, threshold, speed = 1) {
+    if (scrollY > threshold) {
+        return 0;
     }
-    else {
-        aboutText.style.left = scrollY - 700 + "px";
-    }
+    return (scrollY - threshold) * speed;
 }

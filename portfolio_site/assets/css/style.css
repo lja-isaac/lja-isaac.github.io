@@ -1,12 +1,45 @@
 :root {
-    --neon-blue: #00f2ff;
-    --neon-blue-rgb: 0, 242, 255;
-    --neon-dark-blue: #002741;
-    --neon-dark-blue-rgb: 0, 39, 65;
-    --neon-purple: #bc13fe;
     --dark-bg: #0d0d0d;
     --card-bg: #1a1a1a;
     --navbar-height: 56px;
+
+    --theme-primary-1: #00f2ff;
+    --theme-primary-2: #00C7D2;
+    --theme-primary-3: #009DA6;
+    --theme-primary-4: #007980;
+    --theme-primary-5: #005459;
+    --theme-primary-6: #002E31;
+    --theme-primary-7: #000D0E;
+
+    --theme-secondary-1: #DEEBFF;
+    --theme-secondary-2: #9FC5FF;
+    --theme-secondary-3: #5D9CFF;
+    --theme-secondary-4: #0072FF;
+    --theme-secondary-5: #0052BC;
+    --theme-secondary-6: #003278;
+    --theme-secondary-7: #00153B;
+
+    --theme-tertiary-1: #00FF8D;
+    --theme-tertiary-2: #00D273;
+    --theme-tertiary-3: #00A65A;
+    --theme-tertiary-4: #008044;
+    --theme-tertiary-5: #00592D;
+    --theme-tertiary-6: #003217;
+    --theme-tertiary-7: #000F04;
+    
+    --theme-mono-1: #edeff0;
+    --theme-mono-2: #C2C9CC;
+    --theme-mono-3: #9BA3A8;
+    --theme-mono-4: #7B8285;
+    --theme-mono-5: #595F61;
+    --theme-mono-6: #383B3D;
+    --theme-mono-7: #191B1C;
+
+    --neon-teal: var(--theme-primary-1);
+    --neon-dark-blue: var(--theme-secondary-7);
+    --neon-blue: var(--theme-secondary-4);
+    --neon-green: var(--theme-tertiary-1);
+    --gray: var(--theme-mono-5);
 }
 
 body {
@@ -49,8 +82,8 @@ body {
 }
 
 .text-neon {
-    color: var(--neon-blue);
-    text-shadow: 0 0 5px var(--neon-blue);
+    color: var(--neon-teal);
+    text-shadow: 0 0 5px var(--neon-teal);
 }
 
 .card {
@@ -60,7 +93,7 @@ body {
 
 .card:hover {
     transform: translateY(-5px);
-    border-color: var(--neon-blue);
+    border-color: var(--neon-teal);
     box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
 }
 
@@ -91,14 +124,14 @@ section#about {
         height: 240px;
     }
 
-    svg.skills-circle {
+    svg {
         overflow: visible;
     }
 
     circle.skills-circle-animated {
-        fill: rgb(var(--neon-dark-blue-rgb));
+        fill: var(--neon-dark-blue);
         fill-opacity: 0;
-        stroke: var(--neon-blue);
+        stroke: var(--neon-teal);
         stroke-width: 7;
         stroke-linecap: round;
 
@@ -125,5 +158,24 @@ section#about {
         top: 50%;
         translate: -50% -50%;
         opacity: 0;
+    }
+
+    #skills-description{
+        display: inline-block;
+    }
+
+    .skills-bar-svg{
+        width: 150px;
+    }
+
+    line.skills-bar{
+        stroke-width: 3;
+        stroke-dasharray: 17 4;
+    }
+    line.skills-bar-level{
+        stroke: var(--neon-green);
+    }
+    line.skills-bar-empty{
+        stroke: var(--gray);
     }
 }
