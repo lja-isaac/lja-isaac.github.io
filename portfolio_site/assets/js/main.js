@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.add('hidden');
         }
-
-        ScrollParallexAnimation(currentScrollY);
     });
 
     // Fade-in animation logic
@@ -83,7 +81,7 @@ let skillObjs = [
 function animateSkills() {
     // const [container] = utils.$('#div-skills');
     const container = null;
-    const debug = true;
+    const debug = false;
 
     const circle = utils.$('.skill-circle-animated');
 
@@ -144,6 +142,10 @@ function animateSkills() {
         timeline.sync(skillAnimation, 1000);
     }
 
+    timeline.add(`.skill-bar-empty`, {
+        opacity: 1
+    })
+
     // timeline.onComplete = animateJsFloatRandomly;
     timeline.onComplete = () => {
         document.querySelectorAll(".div-skills").forEach((element) => {
@@ -175,6 +177,7 @@ function animateJsFloatRandomly() {
 
 const skillDescription = document.getElementById("skill-description");
 const skillBars = $(".skill-bar-level");
+let skillBarTimeline = null;
 function OnMouseEnterSkill(e) {
     let skill = null;
     let skillId = e.target.id;
@@ -190,8 +193,33 @@ function OnMouseEnterSkill(e) {
     }
 
     skillDescription.innerHTML = skill.name;
-    $(skillBars[0]).attr('x2', clamp(skill.level, 0, 0.5) * 200);
-    $(skillBars[1]).attr('x2', clamp(skill.level - 0.5, 0, 0.5) * 200);
+    // $(skillBars[0]).attr('x2', clamp(skill.level, 0, 0.5) * 200);
+    // $(skillBars[1]).attr('x2', clamp(skill.level - 0.5, 0, 0.5) * 200);
+
+
+    // if (skillBarTimeline != null && skillBarTimeline.began && !skillBarTimeline.paused && !skillBarTimeline.completed) {
+    //     skillBarTimeline.pause();
+    //     skillBarTimeline.reset();
+    //     skillBarTimeline.cancel();
+    // }
+    // skillBarTimeline = createTimeline({
+    //     easing: "easeInOutSine",
+    //     defaults: { duration: 200 },
+    // });
+
+    // const skillBar1 = clamp(skill.level, 0, 0.5) * 5;
+    // const skillBar2 = clamp(skill.level - 0.5, 0, 0.5) * 5;
+
+    // skillBarTimeline.add(utils.$(skillBars[0]), {
+    //     x2: skillBar1 * 40,
+    //     duration: (skillBar1 * 60)
+    // })
+    // skillBarTimeline.add(utils.$(skillBars[1]), {
+    //     x2: skillBar2 * 40,
+    //     duration: (skillBar2 * 60)
+    // })
+
+    SkillBarAnimation(skill.level);
 }
 
 function clamp(num, min, max) {
@@ -200,22 +228,79 @@ function clamp(num, min, max) {
 
 function OnMouseLeaveSkill(e) {
     skillDescription.innerHTML = "";
-    $(skillBars[0]).attr('x2', 0);
-    $(skillBars[1]).attr('x2', 0);
+
+    // if (skillBarTimeline != null && skillBarTimeline.began && !skillBarTimeline.paused && !skillBarTimeline.completed) {
+    //     skillBarTimeline.pause();
+    //     skillBarTimeline.reset();
+    //     skillBarTimeline.cancel();
+    // }
+    // skillBarTimeline = createTimeline({
+    //     easing: "easeInOutSine",
+    //     defaults: { duration: 100 },
+    // });
+    // skillBarTimeline.add(utils.$(skillBars[1]), {
+    //     x2: 0
+    // })
+    // skillBarTimeline.add(utils.$(skillBars[0]), {
+    //     x2: 0
+    // })
+
+    SkillBarAnimation(0);
 }
 
-const aboutText = document.getElementById("about-text");
-const circuitBg = document.querySelector(".circuit-bg");
-function ScrollParallexAnimation(scrollY) {
-    // console.log(scrollY);
-    aboutText.style.left = ParallexFunction(scrollY, 500, 0, 3) + "px";
-    circuitBg.style.scale = Math.max(1, 1.5 - ParallexFunction(scrollY, 1900, 0, -0.0008));
-}
+let previousLevel = 0;
+function SkillBarAnimation(targetLevel) {
+    let currentLevel = previousLevel;
 
-function ParallexFunction(scrollY, threshold, offset = 0, speed = 1) {
-    let val = scrollY - offset;
-    if (val > threshold) {
-        return 0;
+    if (skillBarTimeline != null && skillBarTimeline.began && !skillBarTimeline.paused && !skillBarTimeline.completed) {
+        skillBarTimeline.pause();
+
+        currentLevel = previousLevel / 100 * skillBarTimeline.progress;
+        // skillBarTimeline.reset();
+        skillBarTimeline.cancel();
     }
-    return (val - threshold) * speed;
+    skillBarTimeline = createTimeline({
+        easing: "easeInOutSine",
+    });
+
+    const skillBar1 = clamp(targetLevel, 0, 0.5) * 5;
+    const skillBar2 = clamp(targetLevel - 0.5, 0, 0.5) * 5;
+    const prevSkillBar1 = clamp(currentLevel, 0, 0.5) * 5;
+    const prevSkillBar2 = clamp(currentLevel - 0.5, 0, 0.5) * 5;
+
+    // skillBarTimeline.add(utils.$(skillBars[0]), {
+    //     x2: skillBar1 * 40,
+    //     duration: (Math.abs(skillBar1 - prevSkillBar1) * 60)
+    // })
+    // skillBarTimeline.add(utils.$(skillBars[1]), {
+    //     x2: skillBar2 * 40,
+    //     duration: (Math.abs(skillBar2 - prevSkillBar2) * 60)
+    // })
+
+    if (currentLevel < targetLevel) {
+        skillBarTimeline.add(utils.$(skillBars[0]), {
+            x2: skillBar1 * 40,
+            duration: (Math.abs(skillBar1 - prevSkillBar1) * 60)
+        })
+        if (Math.abs(skillBar2 - prevSkillBar2) > 0) {
+            skillBarTimeline.add(utils.$(skillBars[1]), {
+                x2: skillBar2 * 40,
+                duration: (Math.abs(skillBar2 - prevSkillBar2) * 60)
+            })
+        }
+    }
+    else {
+        if (Math.abs(skillBar2 - prevSkillBar2) > 0) {
+            skillBarTimeline.add(utils.$(skillBars[1]), {
+                x2: skillBar2 * 40,
+                duration: (Math.abs(skillBar2 - prevSkillBar2) * 30)
+            })
+        }
+        skillBarTimeline.add(utils.$(skillBars[0]), {
+            x2: skillBar1 * 40,
+            duration: (Math.abs(skillBar1 - prevSkillBar1) * 30)
+        })
+    }
+
+    previousLevel = targetLevel;
 }

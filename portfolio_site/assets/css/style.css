@@ -191,5 +191,6 @@ section#about {
     }
     line.skill-bar-empty{
         stroke: var(--gray);
+        opacity: 0;
     }
 }
