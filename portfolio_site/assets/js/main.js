@@ -176,8 +176,6 @@ function animateJsFloatRandomly() {
 }
 
 const skillDescription = document.getElementById("skill-description");
-const skillBars = $(".skill-bar-level");
-let skillBarTimeline = null;
 function OnMouseEnterSkill(e) {
     let skill = null;
     let skillId = e.target.id;
@@ -248,59 +246,53 @@ function OnMouseLeaveSkill(e) {
     SkillBarAnimation(0);
 }
 
+const skillBars = $(".skill-bar-level");
+let skillBarTimeline = null;
+let skillBarSeekAnimation = null;
 let previousLevel = 0;
 function SkillBarAnimation(targetLevel) {
-    let currentLevel = previousLevel;
-
-    if (skillBarTimeline != null && skillBarTimeline.began && !skillBarTimeline.paused && !skillBarTimeline.completed) {
-        skillBarTimeline.pause();
-
-        currentLevel = previousLevel / 100 * skillBarTimeline.progress;
-        // skillBarTimeline.reset();
-        skillBarTimeline.cancel();
+    if (skillBarTimeline == null) {
+        skillBarTimeline = createTimeline({
+            autoplay: false,
+            ease: "linear",
+            defaults: {
+                ease: "linear",
+                duration: 5000
+            }
+        });
+        skillBarTimeline.add(utils.$(skillBars[0]), {
+            x2: 100,
+        })
+        skillBarTimeline.add(utils.$(skillBars[1]), {
+            x2: 100,
+        })
     }
-    skillBarTimeline = createTimeline({
+
+    targetLevel = Math.max(0, Math.min(1, targetLevel));
+    const targetTime = targetLevel * skillBarTimeline.duration;
+    const currentTime = skillBarTimeline.currentTime;
+
+    // Cancel the previous seek interpolation
+    if (skillBarSeekAnimation) {
+        skillBarSeekAnimation.cancel();
+    }
+
+    const seekValue = {
+        time: currentTime
+    };
+
+    skillBarSeekAnimation = animate(seekValue, {
+        time: targetTime,
+        duration: 300,
         easing: "easeInOutSine",
+
+        onUpdate: () => {
+            skillBarTimeline.seek(seekValue.time);
+        },
+
+        onComplete: () => {
+            skillBarTimeline.seek(targetTime);
+            seekAnimation = null;
+        }
     });
-
-    const skillBar1 = clamp(targetLevel, 0, 0.5) * 5;
-    const skillBar2 = clamp(targetLevel - 0.5, 0, 0.5) * 5;
-    const prevSkillBar1 = clamp(currentLevel, 0, 0.5) * 5;
-    const prevSkillBar2 = clamp(currentLevel - 0.5, 0, 0.5) * 5;
-
-    // skillBarTimeline.add(utils.$(skillBars[0]), {
-    //     x2: skillBar1 * 40,
-    //     duration: (Math.abs(skillBar1 - prevSkillBar1) * 60)
-    // })
-    // skillBarTimeline.add(utils.$(skillBars[1]), {
-    //     x2: skillBar2 * 40,
-    //     duration: (Math.abs(skillBar2 - prevSkillBar2) * 60)
-    // })
-
-    if (currentLevel < targetLevel) {
-        skillBarTimeline.add(utils.$(skillBars[0]), {
-            x2: skillBar1 * 40,
-            duration: (Math.abs(skillBar1 - prevSkillBar1) * 60)
-        })
-        if (Math.abs(skillBar2 - prevSkillBar2) > 0) {
-            skillBarTimeline.add(utils.$(skillBars[1]), {
-                x2: skillBar2 * 40,
-                duration: (Math.abs(skillBar2 - prevSkillBar2) * 60)
-            })
-        }
-    }
-    else {
-        if (Math.abs(skillBar2 - prevSkillBar2) > 0) {
-            skillBarTimeline.add(utils.$(skillBars[1]), {
-                x2: skillBar2 * 40,
-                duration: (Math.abs(skillBar2 - prevSkillBar2) * 30)
-            })
-        }
-        skillBarTimeline.add(utils.$(skillBars[0]), {
-            x2: skillBar1 * 40,
-            duration: (Math.abs(skillBar1 - prevSkillBar1) * 30)
-        })
-    }
-
-    previousLevel = targetLevel;
 }
