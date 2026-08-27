@@ -85,14 +85,16 @@ body {
     position: relative;
     height: 100vh;
     overflow: hidden;
+    pointer-events: none;
     /* Prevent pattern from overflowing */
 }
 
 #hero-bg {
     position: absolute;
     inset: 0;
-    pointer-events: none;
+    /* pointer-events: none; */
     z-index: 0;
+    pointer-events: all;
 }
 
 .text-neon {

@@ -1,23 +1,80 @@
 import * as THREE from "three/webgpu";
-import { color, distance, smoothstep, uniform, uv, vec2, vec3 } from "three/tsl";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { color, positionLocal, range, time, vec3, mod, uv, float, pass } from "three/tsl";
+import { afterImage } from 'three/addons/tsl/display/AfterImageNode.js';
+import { getBackground } from "./hero bg anim bg.js";
 
-const bgGeometry = new THREE.IcosahedronGeometry(100, 2);
-const bgColor = uniform(new THREE.Color('#152f85'));
-const circ = smoothstep(0.001, 0.2, distance(uv(), vec2(0.55))).oneMinus();
-const bgColorNode = bgColor.mul(vec3(circ));
-const bgMat = new THREE.MeshBasicNodeMaterial({
-  side: THREE.BackSide,
-  colorNode: bgColorNode,
+const starCount = 1000;
+const starSize = 0.8;
+const starSpeed = 20;
+const starBoxSize = 70;
+const starBrightnessRange = range(0.1, 1.2)
+// const starColorRange = range(color(0x000000), color(0xffffff))
+const starColorRange = range(color(0xffffff), color(0xffffff))
+
+const w = window.innerWidth;
+const h = window.innerHeight;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color("#000000");
+const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
+camera.position.z = 50;
+const renderer = new THREE.WebGPURenderer({ antialias: true });
+renderer.setSize(w, h);
+await renderer.init();
+
+// document.body.appendChild(renderer.domElement);
+const heroBg = document.getElementById('hero-bg');
+heroBg.appendChild(renderer.domElement);
+
+const ctrls = new OrbitControls(camera, renderer.domElement);
+ctrls.enableDamping = true;
+
+const geometry = new THREE.PlaneGeometry(starSize, starSize, 256, 64);
+const material = new THREE.MeshBasicNodeMaterial({
+  // color: 0xff0066,
+  transparent: true,
+  alphaTest: 0.1
 });
-const bgSphere = new THREE.Mesh(bgGeometry, bgMat);
-bgSphere.rotation.y = Math.PI * -0.5;
-bgSphere.userData = {
-  setColor: (css) => {
-    bgColor.value.set(css);
-  },
-};
+// material.colorNode = positionLocal;
+material.colorNode = starColorRange.mul(starBrightnessRange);
 
-function getBackground() {
-  return bgSphere;
+const positionRange = range(new THREE.Vector3(-starBoxSize, -starBoxSize, -starBoxSize), new THREE.Vector3(starBoxSize, starBoxSize, starBoxSize));
+
+const animatedZ = mod(positionRange.z.add(time.mul(starSpeed)), starBoxSize * 2).sub(starBoxSize);
+const animatedPos = vec3(positionRange.x, positionRange.y, animatedZ);
+material.positionNode = positionLocal.add(animatedPos);
+// material.opacityNode = float(0.1).div(uv().sub(0.5).length()).sub(0.25);
+material.opacityNode = (float(0.1).div(uv().sub(0.5).length()).sub(0.25)).clamp(0, 1);
+
+const stars = new THREE.InstancedMesh(geometry, material, starCount);
+scene.add(stars);
+
+// const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 2.0);
+// scene.add(hemiLight);
+
+// // background
+// const bgSphere = getBackground();
+// scene.add(bgSphere);
+
+const postProcessing = new THREE.RenderPipeline(renderer);
+const scenePass = pass(scene, camera);
+const scenePassColor = scenePass.getTextureNode();
+
+const afterImageEffect = afterImage(scenePassColor, 0.9);
+
+postProcessing.outputNode = afterImageEffect;
+
+function animate() {
+  // knot.rotation.x += 0.01;
+  // knot.rotation.y += 0.02;
+  postProcessing.render(scene, camera);
+  ctrls.update();
 }
-export { getBackground };
+renderer.setAnimationLoop(animate);
+
+function handleWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+window.addEventListener('resize', handleWindowResize, false);
