@@ -68,8 +68,8 @@ function ScrollParallexAnimation() {
 
     let currElem;
     currElem = parallexObjects.AboutText;
-    currElem.dom.style.translate = ParallexFunction(scrollY, currElem, 0, 3) + "px";
-    currElem.dom.style.opacity = Math.max(0, 1 - ParallexFunction(scrollY, currElem, 0, -0.005));
+    currElem.dom.style.translate = ParallexFunction(scrollY, currElem, 0, 1) + "px";
+    currElem.dom.style.opacity = Math.max(0, 1 - ParallexFunction(scrollY, currElem, 0, -0.0025));
     currElem = parallexObjects.CircuitBg;
     currElem.dom.style.scale = Math.max(1, 1.5 - ParallexFunction(scrollY, currElem, 0, -0.0008));
 }
