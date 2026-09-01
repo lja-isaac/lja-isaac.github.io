@@ -26,7 +26,7 @@
     --theme-tertiary-5: #00592D;
     --theme-tertiary-6: #003217;
     --theme-tertiary-7: #000F04;
-    
+
     --theme-mono-1: #edeff0;
     --theme-mono-2: #C2C9CC;
     --theme-mono-3: #9BA3A8;
@@ -62,16 +62,17 @@ body {
 .navbar.hidden {
     opacity: 0.5;
 }
+
 .navbar.hidden:hover {
     opacity: 1;
 }
 
-.circuit-bg{
-    position:absolute;
+.circuit-bg {
+    position: absolute;
     inset: 0;
     z-index: -1;
     opacity: 0.2;
-    
+
     background-image: url("../img/hero\ bg.jpeg");
     background-repeat: no-repeat;
     background-position: center;
@@ -125,19 +126,20 @@ body {
 }
 
 section#about {
-    div#about-text{
+    div#about-text {
         @media (min-width:992px) {
             max-width: 500px;
         }
     }
 
-    div#skills-container{
+    div#skills-container {
         position: relative;
         width: 450px;
         height: 450px;
 
     }
-    div#skills-container > *{
+
+    div#skills-container>* {
         position: absolute;
         left: 50%;
         top: 50%;
@@ -150,7 +152,7 @@ section#about {
         overflow: visible;
     }
 
-    .skill-circle-selected circle{
+    .skill-circle-selected circle {
         /* fill: var(--theme-tertiary-2); 
         stroke:var(--theme-mono-2); */
 
@@ -184,18 +186,18 @@ section#about {
         transform-origin: center;
     }
 
-    div#div-all-skills{
-    }
+    div#div-all-skills {}
 
-    div#div-all-skills > div.div-skills{
+    div#div-all-skills>div.div-skills {
         position: absolute;
         left: 50%;
         top: 50%;
         translate: -50% -50%;
         opacity: 0;
+        transition: translate 0.5s
     }
 
-    #skill-description{
+    #skill-description {
         display: inline-block;
         color: var(--theme-primary-2);
         font-weight: 600;
@@ -203,26 +205,35 @@ section#about {
         height: 1.5em;
     }
 
-    .skill-bar-svg{
+    .skill-bar-svg {
         width: 150px;
     }
 
-    line.skill-bar{
+    line.skill-bar {
         stroke-width: 3;
         stroke-dasharray: 17 4;
     }
-    line.skill-bar-level{
+
+    line.skill-bar-level {
         stroke: var(--neon-green);
     }
-    line.skill-bar-empty{
+
+    line.skill-bar-empty {
         stroke: var(--gray);
         opacity: 0;
     }
 }
 
-footer{
+footer {
     background-color: var(--theme-mono-4);
-    a{
+
+    a {
         text-decoration: none;
+    }
+
+    .icon {
+        width: 2em;
+        height: 2em;
+        /* vertical-align: -0.125em; */
     }
 }

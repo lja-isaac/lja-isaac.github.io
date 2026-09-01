@@ -219,23 +219,26 @@ function animateJsFloatRandomly() {
 }
 
 const skillDescription = document.getElementById("skill-description");
-function OnMouseEnterSkill(e) {
-    noSkillHoveredAnimation.pause();
-    noSkillHoveredAnimation.reset();
-
+function GetSkillByElementId(elemId){
     let skill = null;
-    let skillId = e.target.id;
+    let skillIndex = null;
     for (const [currIndex, currSkill] of skillObjs.entries()) {
-        if (skillId == currSkill.elemId) {
+        if (elemId == currSkill.elemId) {
             skill = currSkill;
-            noSkillHoveredAnimationFirstIndex = currIndex;
+            skillIndex = currIndex;
             break;
         }
     }
 
-    if (skill == null) {
-        return;
-    }
+    return [skill, skillIndex];
+}
+function OnMouseEnterSkill(e) {
+    noSkillHoveredAnimation.pause();
+    noSkillHoveredAnimation.reset();
+
+    let skillId = e.target.id;
+    let skill;
+    [skill, noSkillHoveredAnimationFirstIndex] = GetSkillByElementId(skillId);
 
     ShowSkillLevelAnimation(skill);
 }
@@ -258,14 +261,27 @@ function ShowSkillLevelAnimation(skill) {
     SkillBarAnimation(skill.level);
 
     const element = document.getElementById(skill.elemId);
-    const relativeX = element.offsetLeft;
-    const relativeY = element.offsetTop;
 
-    let skillAnimation = animate('.skill-circle-selected circle', {
+    let selectedCircleAnimation = animate('.skill-circle-selected circle', {
         x: skill.x,
-        y: skill.y,
-        duration: 200
+        y: skill.y - 10,
+        duration: 300
     });
+    let raiseSkillAnim = animate(`#${skill.elemId}`, {
+        x: skill.x,
+        y: skill.y - 10,
+        duration: 300
+    });
+    
+    for (const [currIndex, currSkill] of skillObjs.entries()) {
+        if (currSkill.elemId != skill.elemId) {
+            let resetOtherSkillsAnim = animate(`#${currSkill.elemId}`, {
+                x: currSkill.x,
+                y: currSkill.y,
+                duration: 300
+            });
+        }
+    }
 }
 
 const skillBars = $(".skill-bar-level");
