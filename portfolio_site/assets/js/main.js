@@ -78,6 +78,8 @@ let skillObjs = [
     },
 ];
 
+let noSkillHoveredAnimation = null;
+let noSkillHoveredAnimationFirstIndex = 0;
 function animateSkills() {
     // const [container] = utils.$('#div-skills');
     const container = null;
@@ -156,6 +158,17 @@ function animateSkills() {
                 OnMouseLeaveSkill(event);
             });
         });
+
+        noSkillHoveredAnimationFirstIndex = 0;
+        noSkillHoveredAnimation = createTimer({
+            duration: 3000,
+            autoplay: true,
+            loop: true,
+            onLoop: self => {
+                const skill = skillObjs[(noSkillHoveredAnimationFirstIndex + self._currentIteration) % skillObjs.length];
+                ShowSkillLevelAnimation(skill);
+            }
+        });
     };
 }
 
@@ -177,11 +190,15 @@ function animateJsFloatRandomly() {
 
 const skillDescription = document.getElementById("skill-description");
 function OnMouseEnterSkill(e) {
+    noSkillHoveredAnimation.pause();
+    noSkillHoveredAnimation.reset();
+
     let skill = null;
     let skillId = e.target.id;
-    for (const currSkill of skillObjs) {
+    for (const [currIndex, currSkill] of skillObjs.entries()) {
         if (skillId == currSkill.elemId) {
             skill = currSkill;
+            noSkillHoveredAnimationFirstIndex = currIndex;
             break;
         }
     }
@@ -190,60 +207,25 @@ function OnMouseEnterSkill(e) {
         return;
     }
 
-    skillDescription.innerHTML = skill.name;
-    // $(skillBars[0]).attr('x2', clamp(skill.level, 0, 0.5) * 200);
-    // $(skillBars[1]).attr('x2', clamp(skill.level - 0.5, 0, 0.5) * 200);
-
-
-    // if (skillBarTimeline != null && skillBarTimeline.began && !skillBarTimeline.paused && !skillBarTimeline.completed) {
-    //     skillBarTimeline.pause();
-    //     skillBarTimeline.reset();
-    //     skillBarTimeline.cancel();
-    // }
-    // skillBarTimeline = createTimeline({
-    //     easing: "easeInOutSine",
-    //     defaults: { duration: 200 },
-    // });
-
-    // const skillBar1 = clamp(skill.level, 0, 0.5) * 5;
-    // const skillBar2 = clamp(skill.level - 0.5, 0, 0.5) * 5;
-
-    // skillBarTimeline.add(utils.$(skillBars[0]), {
-    //     x2: skillBar1 * 40,
-    //     duration: (skillBar1 * 60)
-    // })
-    // skillBarTimeline.add(utils.$(skillBars[1]), {
-    //     x2: skillBar2 * 40,
-    //     duration: (skillBar2 * 60)
-    // })
-
-    SkillBarAnimation(skill.level);
-}
-
-function clamp(num, min, max) {
-    return Math.min(Math.max(num, min), max);
+    ShowSkillLevelAnimation(skill);
 }
 
 function OnMouseLeaveSkill(e) {
-    skillDescription.innerHTML = "";
+    // ShowSkillLevelAnimation(null);
 
-    // if (skillBarTimeline != null && skillBarTimeline.began && !skillBarTimeline.paused && !skillBarTimeline.completed) {
-    //     skillBarTimeline.pause();
-    //     skillBarTimeline.reset();
-    //     skillBarTimeline.cancel();
-    // }
-    // skillBarTimeline = createTimeline({
-    //     easing: "easeInOutSine",
-    //     defaults: { duration: 100 },
-    // });
-    // skillBarTimeline.add(utils.$(skillBars[1]), {
-    //     x2: 0
-    // })
-    // skillBarTimeline.add(utils.$(skillBars[0]), {
-    //     x2: 0
-    // })
+    noSkillHoveredAnimation.play();
 
-    SkillBarAnimation(0);
+}
+
+function ShowSkillLevelAnimation(skill) {
+    if (skill == null) {
+        skillDescription.innerHTML = "";
+        SkillBarAnimation(0);
+        return;
+    }
+
+    skillDescription.innerHTML = skill.name;
+    SkillBarAnimation(skill.level);
 }
 
 const skillBars = $(".skill-bar-level");
@@ -295,4 +277,8 @@ function SkillBarAnimation(targetLevel) {
             seekAnimation = null;
         }
     });
+}
+
+function clamp(num, min, max) {
+    return Math.min(Math.max(num, min), max);
 }
