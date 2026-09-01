@@ -38,7 +38,7 @@ function CalculateParallexThresholds() {
     parallexObjects.AboutText.threshold = GetParallexThreshold(parallexObjects.AboutText.dom, vh50, 1);
     parallexObjects.CircuitBg.threshold = GetParallexThreshold(parallexObjects.CircuitBg.dom, 0, 1);
 
-    console.log(parallexObjects);
+    // console.log(parallexObjects);
     ScrollParallexAnimation();
 }
 

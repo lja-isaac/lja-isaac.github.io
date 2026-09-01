@@ -125,6 +125,12 @@ body {
 }
 
 section#about {
+    div#about-text{
+        @media (min-width:992px) {
+            max-width: 500px;
+        }
+    }
+
     div#skills-container{
         position: relative;
         width: 420px;
