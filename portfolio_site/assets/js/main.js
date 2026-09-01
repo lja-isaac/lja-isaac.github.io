@@ -164,6 +164,10 @@ function animateSkills() {
             duration: 3000,
             autoplay: true,
             loop: true,
+            onBegin: self => {
+                const skill = skillObjs[(noSkillHoveredAnimationFirstIndex + self._currentIteration) % skillObjs.length];
+                ShowSkillLevelAnimation(skill);
+            },
             onLoop: self => {
                 const skill = skillObjs[(noSkillHoveredAnimationFirstIndex + self._currentIteration) % skillObjs.length];
                 ShowSkillLevelAnimation(skill);
