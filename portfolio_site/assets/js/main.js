@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    animateSkills();
+    animateSkillsAppearTimeline();
 });
 
 const divSkills = document.querySelector('#div-all-skills');
@@ -79,7 +79,7 @@ let skillObjs = [
     {
         "id": "sass",
         "name": "SASS",
-        "level": 6 / 10,
+        "level": 5 / 10,
         "iconClass": "devicon-sass-plain"
     },
     {
@@ -104,7 +104,7 @@ let skillObjs = [
 
 let noSkillHoveredAnimation = null;
 let noSkillHoveredAnimationFirstIndex = 0;
-function animateSkills() {
+function animateSkillsAppearTimeline() {
     // const [container] = utils.$('#div-skills');
     const container = null;
     const debug = false;
@@ -147,7 +147,7 @@ function animateSkills() {
         divSkills.innerHTML += skillObjElemStr;
     }
 
-    const skillObjRadius = 165;
+    const skillObjRadius = 170;
     const total = skillObjs.length;
     const angleOffset = -Math.PI / 2;
     for (const [index, skill] of skillObjs.entries()) {
