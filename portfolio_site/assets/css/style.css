@@ -133,8 +133,8 @@ section#about {
 
     div#skills-container{
         position: relative;
-        width: 420px;
-        height: 500px;
+        width: 450px;
+        height: 450px;
 
     }
     div#skills-container > *{
@@ -150,7 +150,20 @@ section#about {
         overflow: visible;
     }
 
-    circle.skill-circle-animated {
+    .skill-circle-selected circle{
+        /* fill: var(--theme-tertiary-2); 
+        stroke:var(--theme-mono-2); */
+
+        fill: var(--theme-tertiary-7);
+        stroke: var(--neon-green);
+
+        fill-opacity: 1;
+        stroke-width: 4;
+        stroke-linecap: round;
+        opacity: 0;
+    }
+
+    .skill-circle-animated circle {
         fill: var(--neon-dark-blue);
         fill-opacity: 0;
         stroke: var(--neon-teal);
@@ -158,15 +171,15 @@ section#about {
         stroke-linecap: round;
 
         /*
-    r = 90
-    circumference ≈ 565.49
-    */
-        stroke-dasharray: 565.49;
-        stroke-dashoffset: 565.49;
+        r = 100
+        circumference ≈ 628.3
+        */
+        stroke-dasharray: 628.3;
+        stroke-dashoffset: 628.3;
 
         /*
-    Starts at the top of the circle
-    */
+        Starts at the top of the circle
+        */
         transform: rotate(-90deg);
         transform-origin: center;
     }
@@ -204,5 +217,12 @@ section#about {
     line.skill-bar-empty{
         stroke: var(--gray);
         opacity: 0;
+    }
+}
+
+footer{
+    background-color: var(--theme-mono-4);
+    a{
+        text-decoration: none;
     }
 }

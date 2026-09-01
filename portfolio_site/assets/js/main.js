@@ -53,6 +53,18 @@ let skillObjs = [
         "iconClass": "devicon-csharp-plain"
     },
     {
+        "id": "cplus",
+        "name": "C++",
+        "level": 7 / 10,
+        "iconClass": "devicon-cplusplus-plain"
+    },
+    {
+        "id": "vba",
+        "name": "VBA",
+        "level": 4 / 10,
+        "iconClass": "devicon-visualbasic-plain"
+    },
+    {
         "id": "html",
         "name": "HTML",
         "level": 7 / 10,
@@ -65,6 +77,12 @@ let skillObjs = [
         "iconClass": "devicon-css3-plain"
     },
     {
+        "id": "sass",
+        "name": "SASS",
+        "level": 6 / 10,
+        "iconClass": "devicon-sass-plain"
+    },
+    {
         "id": "javascript",
         "name": "Javascript",
         "level": 6 / 10,
@@ -73,8 +91,14 @@ let skillObjs = [
     {
         "id": "python",
         "name": "Python",
-        "level": 5 / 10,
+        "level": 6 / 10,
         "iconClass": "devicon-python-plain"
+    },
+    {
+        "id": "php",
+        "name": "PHP",
+        "level": 7 / 10,
+        "iconClass": "devicon-php-plain"
     },
 ];
 
@@ -85,14 +109,14 @@ function animateSkills() {
     const container = null;
     const debug = false;
 
-    const circle = utils.$('.skill-circle-animated');
+    const circle = utils.$('.skill-circle-animated circle');
 
-    const circumference = 2 * Math.PI * 90;
+    // const circumference = 2 * Math.PI * 90;
 
     const timeline = createTimeline({
         easing: "easeInOutCubic",
         delay: 100,
-        defaults: { duration: 750 },
+        defaults: { duration: 600 },
         autoplay: onScroll({
             target: circle,
             container,
@@ -116,22 +140,22 @@ function animateSkills() {
 
     for (let skill of skillObjs) {
         skill.elemId = `skill-${skill.id}`;
-        let skillObjElemStr = `<div id="${skill.elemId}" class="d-inline-block flex-column text-center div-skills">
+        let skillObjElemStr = `<div id="${skill.elemId}" class="d-flex flex-column text-center div-skills">
                             <i class="${skill.iconClass} colored display-4"></i>
-                            <p>${skill.name}</p>
+                            <span class="d-inline-block">${skill.name}</span>
                         </div>`;
         divSkills.innerHTML += skillObjElemStr;
     }
 
-    const radius = 180;
+    const skillObjRadius = 165;
     const total = skillObjs.length;
     const angleOffset = -Math.PI / 2;
     for (const [index, skill] of skillObjs.entries()) {
 
         const angle = angleOffset + (index / total) * Math.PI * 2;
 
-        const x = radius * Math.cos(angle);
-        const y = radius * Math.sin(angle);
+        const x = skillObjRadius * Math.cos(angle);
+        const y = skillObjRadius * Math.sin(angle);
         let skillAnimation = animate(`#${skill.elemId}`, {
             x: x,
             y: y,
@@ -158,6 +182,8 @@ function animateSkills() {
                 OnMouseLeaveSkill(event);
             });
         });
+
+        document.querySelector(".skill-circle-selected circle").style.opacity = 1;
 
         noSkillHoveredAnimationFirstIndex = 0;
         noSkillHoveredAnimation = createTimer({
@@ -230,6 +256,16 @@ function ShowSkillLevelAnimation(skill) {
 
     skillDescription.innerHTML = skill.name;
     SkillBarAnimation(skill.level);
+
+    const element = document.getElementById(skill.elemId);
+    const relativeX = element.offsetLeft;
+    const relativeY = element.offsetTop;
+
+    let skillAnimation = animate('.skill-circle-selected circle', {
+        x: skill.x,
+        y: skill.y,
+        duration: 200
+    });
 }
 
 const skillBars = $(".skill-bar-level");
