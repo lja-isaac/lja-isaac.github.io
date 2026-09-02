@@ -59,8 +59,8 @@ let skillObjs = [
         "iconClass": "devicon-cplusplus-plain"
     },
     {
-        "id": "vba",
-        "name": "VBA",
+        "id": "vb",
+        "name": "VB",
         "level": 4 / 10,
         "iconClass": "devicon-visualbasic-plain"
     },
