@@ -1,6 +1,8 @@
+
 // import { animate, createTimer, createTimeline , utils, onScroll } from window.anime;
 const { animate, createTimer, createTimeline, utils, onScroll } = anime;
 
+// #region Animation
 // Portfolio main JavaScript
 document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
@@ -334,7 +336,5 @@ function SkillBarAnimation(targetLevel) {
         }
     });
 }
+// #endregion Animation
 
-function clamp(num, min, max) {
-    return Math.min(Math.max(num, min), max);
-}

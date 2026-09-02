@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <title>Isaac Lee - Software Developer</title>
     <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,45 +30,71 @@
             <div id="hero-bg">
             </div>
             <div class="container text-center position-relative">
-                <h1 class="display-1 fw-bold">Isaac Lee Jun Ann</h1>
-                <p class="lead">Full-Stack Software Engineer</p>
+                <span class="display-5 lead">Hi! I'm</span> <span class="display-3 fw-bolder"> Isaac.</span>
+                <br>
+                <span class="lead">A Full-Stack Software Engineer</span>
             </div>
         </section>
 
-        <section id="about" class="container-fluid py-5 px-4 d-flex flex-column flex-lg-row justify-content-evenly">
-            <div id="about-text" class="align-content-center">
-                <h2 class="text-center mb-4 text-neon">About Me</h2>
-                <p class="text-center">I am a determined and results-oriented individual with a strong passion for
-                    programming and software development. My belief is that programming plays an important and
-                    significant role, and can have positive impacts on our everyday lives. For this reason, I became
-                    a full-stack software engineer and aspire to be involved in a field where I can use my skills to
-                    contribute positively to the development of innovative software products and deepen my knowledge
-                    on emerging technologies.</p>
-            </div>
-            <div class="w-auto d-flex align-items-center">
-                <div class="container d-flex justify-content-center">
-                    <div id="skills-container">
-                        <svg class="skill-circle-selected" viewBox="0 0 240 240">
-                            <circle cx="120" cy="120" r="55" />
-                        </svg>
+        <section id="about" class="container-fluid py-5 px-4">
+            <div class="d-flex flex-column flex-lg-row justify-content-evenly">
 
-                        <div id="div-all-skills"></div>
-
-                        <svg class="skill-circle-animated" viewBox="0 0 250 250">
-                            <circle cx="125" cy="125" r="100" />
-                        </svg>
-
-                        <div id="div-skill-level" class="text-center d-flex flex-column justify-content-center ">
-                            <p id="skill-description"></p>
-                            <svg class="skill-bar-svg mx-auto" viewBox="0 0 100 10">
-                                <line class="skill-bar skill-bar-empty" x1="0" x2="100" y1="0" y2="0" />
-                                <line class="skill-bar skill-bar-empty" x1="0" x2="100" y1="10" y2="10" />
-                                <line class="skill-bar skill-bar-level" x1="0" x2="0" y1="0" y2="0" />
-                                <line class="skill-bar skill-bar-level" x1="0" x2="0" y1="10" y2="10" />
+                <div id="about-text" class="align-content-center">
+                    <h2 class="text-center mb-4 text-neon">About Me</h2>
+                    <p class="text-start">
+                        I am a determined and results-oriented individual with a strong passion for
+                        programming and software development. My belief is that programming plays an important and
+                        significant role, and can have positive impacts on our everyday lives. <br>
+                        For this reason, I became
+                        a full-stack software engineer and aspire to be involved in a field where I can use my skills to
+                        contribute positively to the development of innovative software products and deepen my knowledge
+                        on emerging technologies.
+                    </p>
+                </div>
+                <div class="w-auto d-flex align-items-center">
+                    <div class="container d-flex justify-content-center">
+                        <div id="skills-container">
+                            <svg class="skill-circle-selected" viewBox="0 0 240 240">
+                                <circle cx="120" cy="120" r="55" />
                             </svg>
+
+                            <div id="div-all-skills"></div>
+
+                            <svg class="skill-circle-animated" viewBox="0 0 250 250">
+                                <circle cx="125" cy="125" r="100" />
+                            </svg>
+
+                            <div id="div-skill-level" class="text-center d-flex flex-column justify-content-center ">
+                                <p id="skill-description"></p>
+                                <svg class="skill-bar-svg mx-auto" viewBox="0 0 100 10">
+                                    <line class="skill-bar skill-bar-empty" x1="0" x2="100" y1="0" y2="0" />
+                                    <line class="skill-bar skill-bar-empty" x1="0" x2="100" y1="10" y2="10" />
+                                    <line class="skill-bar skill-bar-level" x1="0" x2="0" y1="0" y2="0" />
+                                    <line class="skill-bar skill-bar-level" x1="0" x2="0" y1="10" y2="10" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-evenly fs-2 mx-5 my-3 p-3 rounded rounded-3">
+                <i class="devicon-codeigniter-plain"></i>
+
+                <i class="devicon-dotnetcore-plain"></i>
+
+                <i class="devicon-qt-original"></i>
+
+                <i class="devicon-unity-plain"></i>
+
+                <i class="devicon-sqldeveloper-plain"></i>
+
+                <i class="devicon-github-original"></i>
+
+                <i class="devicon-amazonwebservices-plain-wordmark"></i>
+
+                <i class="devicon-androidstudio-plain"></i>
+
+                <i class="devicon-blender-original"></i>
             </div>
         </section>
 
@@ -207,14 +234,15 @@
             <h2 class="text-center mb-4 text-neon">Contact</h2>
 
             <p>
-                Have a question or want to work together?<br>
-                Leave your details and I'll get back to you as soon as possible.
+                Have a project in mind or a question to discuss? I'd love to hear from you.<br>
+                Send me an email, and I'll get back to you shortly.
             </p>
-            <form method="POST" class="container" style="max-width:500px">
-                <input class="form-control mb-1" name="name" placeholder="Name">
-                <input class="form-control mb-1" type="email" name="_replyto" placeholder="Email">
-                <textarea class="form-control mb-3" name="message" placeholder="Message"></textarea>
-                <button type="button" class="btn btn-outline-info btn-lg">Submit</button>
+            <form id="form-ContactMe" class="container" style="max-width:500px">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                <input class="form-control mb-1" type="text" name="name" placeholder="Name" required>
+                <input class="form-control mb-1" type="email" name="email" placeholder="Email" required>
+                <textarea class="form-control mb-3" name="message" placeholder="Message" required></textarea>
+                <button type="submit" class="btn btn-outline-info btn-lg">Submit</button>
             </form>
         </section>
     </main>
@@ -259,6 +287,9 @@
         </div>
     </footer>
 
+    <div id="toast-container" class="position-fixed bottom-0 end-0 p-3">
+    </div>
+
     <!-- #region Javascript -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"
         integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
@@ -278,9 +309,12 @@
     <!-- AnimeJs Script -->
     <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
     <!-- Custom JS -->
+    <script src="assets/js/extension.js"></script>
     <script type="module" src="assets/js/hero bg anim.js"></script>
+    <script src="assets/js/toast.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/parallex.js"></script>
+    <script src="assets/js/Form-ContactMe.js"></script>
     <!-- #endregion Javascript -->
 </body>
 
