@@ -13,16 +13,20 @@ form.addEventListener('submit', async (e) => {
     submitBtn.disabled = true;
 
     try {
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData
-        });
+        // const response = await fetch("https://api.web3forms.com/submit", {
+        //     method: "POST",
+        //     body: formData
+        // });
 
-        const data = await response.json();
+        // const data = await response.json();
+        const data = {
+            message: "test error"
+        }
 
-        if (response.ok) {
-            ToastExt.showToast({ message: "Thanks for reaching out! Your message has been sent successfully. I'll review it and get back to you as soon as possible." });
-            form.reset();
+        // if (response.ok) {
+        if (true) {
+            ToastExt.showToast({ message: "Thanks for reaching out! Your message has been sent successfully. I'll review it and get back to you as soon as possible.", variant: 'success' });
+            // form.reset();
         } else {
             ToastExt.showToast({ message: `Your message couldn't be sent. ${data.message}`, variant: 'danger' });
         }

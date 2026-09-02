@@ -7,7 +7,8 @@
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <title>Isaac Lee - Software Developer</title>
     <!-- Bootstrap 5 CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- Bootstrap Icons CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- Devicon CDN for icons -->
@@ -19,8 +20,44 @@
 <body>
     <!-- Navbar placeholder -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">Isaac Lee</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
         </div>
     </nav>
 
@@ -37,7 +74,7 @@
         </section>
 
         <section id="about" class="container-fluid py-5 px-4">
-            <div class="d-flex flex-column flex-lg-row justify-content-evenly">
+            <div class="px-4 d-flex flex-column flex-lg-row justify-content-evenly">
 
                 <div id="about-text" class="align-content-center">
                     <h2 class="text-center mb-4 text-neon">About Me</h2>
@@ -77,24 +114,24 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-evenly fs-2 mx-5 my-3 p-3 rounded rounded-3">
-                <i class="devicon-codeigniter-plain"></i>
+            <div id="tools" class="d-flex justify-content-evenly fs-2 mx-4 my-3 p-2 rounded rounded-3">
+                <i class="tool-icon devicon-codeigniter-plain"></i>
 
-                <i class="devicon-dotnetcore-plain"></i>
+                <i class="tool-icon devicon-dotnetcore-plain"></i>
 
-                <i class="devicon-qt-original"></i>
+                <i class="tool-icon devicon-qt-original"></i>
 
-                <i class="devicon-unity-plain"></i>
+                <i class="tool-icon devicon-unity-plain"></i>
 
-                <i class="devicon-sqldeveloper-plain"></i>
+                <i class="tool-icon devicon-sqldeveloper-plain"></i>
 
-                <i class="devicon-github-original"></i>
+                <i class="tool-icon devicon-github-original"></i>
 
-                <i class="devicon-amazonwebservices-plain-wordmark"></i>
+                <i class="tool-icon devicon-amazonwebservices-plain-wordmark"></i>
 
-                <i class="devicon-androidstudio-plain"></i>
+                <i class="tool-icon devicon-androidstudio-plain"></i>
 
-                <i class="devicon-blender-original"></i>
+                <i class="tool-icon devicon-blender-original"></i>
             </div>
         </section>
 
@@ -176,8 +213,8 @@
                                 <div class="card-body">
                                     <h5>Gem Match</h5>
                                     <p>C# Unity Game.</p>
-                                    <a href="https://whimsicalflute.itch.io/gem-matcher?password=123" target="_blank"
-                                        class="btn btn-outline-info btn-sm">View on Itch.io</a>
+                                    <a href="https://whimsicalflute.itch.io/gem-matcher" target="_blank"
+                                        class="btn btn-outline-primary btn-sm">View on Itch.io</a>
                                 </div>
                             </div>
                         </div>
@@ -186,8 +223,8 @@
                                 <div class="card-body">
                                     <h5>Plinko Dropper</h5>
                                     <p>C# Unity Game.</p>
-                                    <a href="https://whimsicalflute.itch.io/plinko-dropper?password=123" target="_blank"
-                                        class="btn btn-outline-info btn-sm">View on Itch.io</a>
+                                    <a href="https://whimsicalflute.itch.io/plinko-dropper" target="_blank"
+                                        class="btn btn-outline-primary btn-sm">View on Itch.io</a>
                                 </div>
                             </div>
                         </div>
@@ -196,8 +233,8 @@
                                 <div class="card-body">
                                     <h5>Python Helper App</h5>
                                     <p>All-purpose timer/autoclicker.</p>
-                                    <a href="https://whimsicalflute.itch.io/all-purpose-helper?password=123"
-                                        target="_blank" class="btn btn-outline-info btn-sm">View on Itch.io</a>
+                                    <a href="https://whimsicalflute.itch.io/all-purpose-helper" target="_blank"
+                                        class="btn btn-outline-primary btn-sm">View on Itch.io</a>
                                 </div>
                             </div>
                         </div>
@@ -294,7 +331,8 @@
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"
         integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
     <!-- Bootstrap 5 JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
     <!-- Three.js -->
     <script type="importmap">
       {

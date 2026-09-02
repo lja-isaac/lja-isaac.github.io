@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+let toolIconsCount;
 function InitializeParallexDOMElements() {
     parallexObjects.AboutText = {
         dom: document.querySelector("#about-text")
@@ -22,6 +23,20 @@ function InitializeParallexDOMElements() {
     parallexObjects.CircuitBg = {
         dom: document.querySelector(".circuit-bg")
     }
+    parallexObjects.ToolIcons = {
+        dom: document.querySelector(".tool-icon")
+    }
+
+    const toolIcons = document.querySelectorAll(".tool-icon");
+    toolIconsCount = toolIcons.length;
+    for (let index = 0; index < toolIconsCount; index++) {
+        const element = toolIcons[index];
+
+        parallexObjects["ToolIcon" + index] = {
+            dom: element
+        };
+    }
+
 }
 
 function CalculateParallexThresholds() {
@@ -34,9 +49,15 @@ function CalculateParallexThresholds() {
     const vh25 = vh1 * 25;
     const vh50 = vh1 * 50;
     const vh75 = vh1 * 75;
+    const vh90 = vh1 * 75;
 
     parallexObjects.AboutText.threshold = GetParallexThreshold(parallexObjects.AboutText.dom, vh50, 1);
     parallexObjects.CircuitBg.threshold = GetParallexThreshold(parallexObjects.CircuitBg.dom, 0, 1);
+
+    const ToolIconDom = parallexObjects["ToolIcon" + 0].dom;
+    for (let index = 0; index < toolIconsCount; index++) {
+        parallexObjects["ToolIcon" + index].threshold = GetParallexThreshold(ToolIconDom, vh90 + (index * -8), 1);
+    }
 
     // console.log(parallexObjects);
     ScrollParallexAnimation();
@@ -58,8 +79,8 @@ function GetDistanceFromViewportTop(selector) {
     return elem.getBoundingClientRect().top + window.scrollY;
 }
 
-const aboutText = document.getElementById("about-text");
-const circuitBg = document.querySelector(".circuit-bg");
+// const aboutText = document.getElementById("about-text");
+// const circuitBg = document.querySelector(".circuit-bg");
 function ScrollParallexAnimation() {
     const scrollY = window.scrollY;
     // console.log(scrollY);
@@ -72,6 +93,11 @@ function ScrollParallexAnimation() {
     currElem.dom.style.opacity = Math.max(0, 1 - ParallexFunction(scrollY, currElem, 0, -0.0025));
     currElem = parallexObjects.CircuitBg;
     currElem.dom.style.scale = Math.max(1, 1.5 - ParallexFunction(scrollY, currElem, 0, -0.0008));
+    for (let index = 0; index < toolIconsCount; index++) {
+        // parallexObjects["ToolIcon" + index].threshold = GetParallexThreshold(ToolIconDom, vh75 + (index * 50), 1);
+        currElem = parallexObjects["ToolIcon" + index];
+        currElem.dom.style.opacity = Math.max(0, 1 - ParallexFunction(scrollY, currElem, 0, -0.01));
+    }
 }
 
 function ParallexFunction(scrollY, parallexObject, offset = 0, speed = 1) {
