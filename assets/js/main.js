@@ -1,6 +1,30 @@
-
 // import { animate, createTimer, createTimeline , utils, onScroll } from window.anime;
 const { animate, createTimer, createTimeline, utils, onScroll } = anime;
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+const demoModal = document.getElementById('modal-demo')
+if (demoModal) {
+  demoModal.addEventListener('show.bs.modal', event => {
+    // Button that triggered the modal
+    const button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    const name = button.getAttribute('data-demo-name')
+    const url = button.getAttribute('data-demo-url')
+    // If necessary, you could initiate an Ajax request here
+    // and then do the updating in a callback.
+
+    // Update the modal's content.
+    const modalTitle = demoModal.querySelector('.modal-title')
+    // const modalBodyInput = demoModal.querySelector('.modal-body input')
+    const modalIframe = demoModal.querySelector('.modal-body iframe')
+
+    modalTitle.textContent = `${name} Demo`
+    // modalBodyInput.value = recipient
+    modalIframe.src = url;
+  })
+}
 
 // #region Animation
 // Portfolio main JavaScript

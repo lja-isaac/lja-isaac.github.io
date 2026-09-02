@@ -115,23 +115,25 @@
                 </div>
             </div>
             <div id="tools" class="d-flex justify-content-evenly fs-2 mx-4 my-3 p-2 rounded rounded-3">
-                <i class="tool-icon devicon-codeigniter-plain"></i>
+                <i class="tool-icon devicon-codeigniter-plain" data-bs-toggle="tooltip" data-bs-title="CodeIgniter"></i>
 
-                <i class="tool-icon devicon-dotnetcore-plain"></i>
+                <i class="tool-icon devicon-dotnetcore-plain" data-bs-toggle="tooltip" data-bs-title=".Net Core"></i>
 
-                <i class="tool-icon devicon-qt-original"></i>
+                <i class="tool-icon devicon-qt-original" data-bs-toggle="tooltip" data-bs-title="Qt"></i>
 
-                <i class="tool-icon devicon-unity-plain"></i>
+                <i class="tool-icon devicon-unity-plain" data-bs-toggle="tooltip" data-bs-title="Unity"></i>
 
-                <i class="tool-icon devicon-sqldeveloper-plain"></i>
+                <i class="tool-icon devicon-sqldeveloper-plain" data-bs-toggle="tooltip" data-bs-title="SQL"></i>
 
-                <i class="tool-icon devicon-github-original"></i>
+                <i class="tool-icon devicon-github-original" data-bs-toggle="tooltip" data-bs-title="Github"></i>
 
-                <i class="tool-icon devicon-amazonwebservices-plain-wordmark"></i>
+                <i class="tool-icon devicon-amazonwebservices-plain-wordmark" data-bs-toggle="tooltip"
+                    data-bs-title="AWS"></i>
 
-                <i class="tool-icon devicon-androidstudio-plain"></i>
+                <i class="tool-icon devicon-androidstudio-plain" data-bs-toggle="tooltip"
+                    data-bs-title="Android Studio"></i>
 
-                <i class="tool-icon devicon-blender-original"></i>
+                <i class="tool-icon devicon-blender-original" data-bs-toggle="tooltip" data-bs-title="Blender"></i>
             </div>
         </section>
 
@@ -196,6 +198,19 @@
         <div class="position-relative overflow-hidden">
             <div class="circuit-bg"></div>
 
+            <div id="modal-demo" class="modal fade" tabindex="-1" data-bs-backdrop="static">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content" style="height: 80vh;">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Game Demo</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <iframe id="modal-demo-iframe" src="" width="100%" height="100%" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <section id="projects" class="container-fluid py-5 fade-in">
                 <div class="container">
                     <h2 class="text-center mb-4 text-neon">Projects</h2>
@@ -211,10 +226,14 @@
                         <div class="col-md-4 mb-3">
                             <div class="card bg-secondary text-white h-100">
                                 <div class="card-body">
-                                    <h5>Gem Match</h5>
+                                    <h5>Gem Matcher</h5>
                                     <p>C# Unity Game.</p>
                                     <a href="https://whimsicalflute.itch.io/gem-matcher" target="_blank"
                                         class="btn btn-outline-primary btn-sm">View on Itch.io</a>
+                                    <button type="button" data-demo-name="Gem Matcher"
+                                        data-demo-url="https://itch.io/embed-upload/18761806?color=000000"
+                                        class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modal-demo">Demo</button>
                                 </div>
                             </div>
                         </div>
@@ -225,6 +244,10 @@
                                     <p>C# Unity Game.</p>
                                     <a href="https://whimsicalflute.itch.io/plinko-dropper" target="_blank"
                                         class="btn btn-outline-primary btn-sm">View on Itch.io</a>
+                                    <button type="button" data-demo-name="Plinko Dropper"
+                                        data-demo-url="https://itch.io/embed-upload/18740451?color=000000"
+                                        class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modal-demo">Demo</button>
                                 </div>
                             </div>
                         </div>
