@@ -55,8 +55,11 @@ function CalculateParallexThresholds() {
     parallexObjects.CircuitBg.threshold = GetParallexThreshold(parallexObjects.CircuitBg.dom, 0, 1);
 
     const ToolIconDom = parallexObjects["ToolIcon" + 0].dom;
-    for (let index = 0; index < toolIconsCount; index++) {
-        parallexObjects["ToolIcon" + index].threshold = GetParallexThreshold(ToolIconDom, vh90 + (index * -8), 1);
+    // for (let index = 0; index < toolIconsCount; index++) {
+    //     parallexObjects["ToolIcon" + index].threshold = GetParallexThreshold(ToolIconDom, vh90 + (index * -8), 1);
+    // }
+    for (let index = toolIconsCount - 1; index >= 0; index--) {
+        parallexObjects["ToolIcon" + index].threshold = GetParallexThreshold(ToolIconDom, vh75 - (index * 8), 1);
     }
 
     // console.log(parallexObjects);
