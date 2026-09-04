@@ -21,42 +21,34 @@
     <!-- Navbar placeholder -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Isaac Lee</a>
+            <a class="navbar-brand" href="#hero">Isaac Lee</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" href="#about">Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <a class="nav-link" href="#experience">Experience</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
+                <!-- <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                </form> -->
             </div>
         </div>
     </nav>
@@ -96,7 +88,7 @@
                     <div class="container d-flex justify-content-center">
                         <div id="skills-container">
                             <svg class="skill-circle-selected" viewBox="0 0 240 240">
-                                <circle cx="120" cy="120" r="55" />
+                                <circle cx="120" cy="120" r="45" />
                             </svg>
 
                             <div id="div-all-skills"></div>
@@ -218,8 +210,8 @@
             <section id="projects" class="container-fluid py-5 fade-in">
                 <div class="container">
                     <h2 class="text-center mb-4 text-neon">Projects</h2>
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gy-3">
+                        <div class="col">
                             <div class="card bg-secondary text-white h-100">
                                 <div class="card-body">
                                     <h5>Portfolio Website</h5>
@@ -227,7 +219,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col">
                             <div class="card bg-secondary text-white h-100">
                                 <div class="card-body">
                                     <h5>Gem Matcher</h5>
@@ -241,7 +233,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col">
                             <div class="card bg-secondary text-white h-100">
                                 <div class="card-body">
                                     <h5>Plinko Dropper</h5>
@@ -255,7 +247,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col">
                             <div class="card bg-secondary text-white h-100">
                                 <div class="card-body">
                                     <h5>Python Helper App</h5>
@@ -274,7 +266,7 @@
                     <h2 class="text-center mb-4 text-neon">Education</h2>
                     <div class="row">
                         <div class="col">
-                            <div class="card bg-secondary text-white mb-3">
+                            <div class="card bg-secondary text-white h-100">
                                 <div class="card-body">
                                     <h5>Bachelor in Computer Science (Major in Cybersecurity)</h5>
                                     <p>University of Wollongong Australia | 2019 – 2023</p>
@@ -282,7 +274,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card bg-secondary text-white">
+                            <div class="card bg-secondary text-white h-100">
                                 <div class="card-body">
                                     <h5>Diploma in Information Technology</h5>
                                     <p>Temasek Polytechnic | 2013 – 2016</p>

@@ -42,11 +42,14 @@
     --gray: var(--theme-mono-5);
 }
 
+section{
+    scroll-margin-top: var(--navbar-height);
+}
+
 body {
     background-color: var(--dark-bg);
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-top: var(--navbar-height);
     /* Offset for fixed navbar */
 }
 
@@ -136,9 +139,8 @@ section#about {
 
     div#skills-container {
         position: relative;
-        width: 450px;
+        width: 420px;
         height: 450px;
-
     }
 
     div#skills-container>* {
@@ -190,13 +192,21 @@ section#about {
 
     div#div-all-skills {}
 
-    div#div-all-skills>div.div-skills {
+    #div-all-skills div.div-skills {
         position: absolute;
         left: 50%;
         top: 50%;
         translate: -50% -50%;
         opacity: 0;
         transition: translate 0.5s
+    }
+
+    div.div-skills i{
+        font-size: 50px;
+    }
+
+    div.div-skills span{
+        font-size: 14px;
     }
 
     #skill-description {

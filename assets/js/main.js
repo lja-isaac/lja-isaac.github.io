@@ -6,24 +6,24 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 
 const demoModal = document.getElementById('modal-demo')
 if (demoModal) {
-  demoModal.addEventListener('show.bs.modal', event => {
-    // Button that triggered the modal
-    const button = event.relatedTarget
-    // Extract info from data-bs-* attributes
-    const name = button.getAttribute('data-demo-name')
-    const url = button.getAttribute('data-demo-url')
-    // If necessary, you could initiate an Ajax request here
-    // and then do the updating in a callback.
+    demoModal.addEventListener('show.bs.modal', event => {
+        // Button that triggered the modal
+        const button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        const name = button.getAttribute('data-demo-name')
+        const url = button.getAttribute('data-demo-url')
+        // If necessary, you could initiate an Ajax request here
+        // and then do the updating in a callback.
 
-    // Update the modal's content.
-    const modalTitle = demoModal.querySelector('.modal-title')
-    // const modalBodyInput = demoModal.querySelector('.modal-body input')
-    const modalIframe = demoModal.querySelector('.modal-body iframe')
+        // Update the modal's content.
+        const modalTitle = demoModal.querySelector('.modal-title')
+        // const modalBodyInput = demoModal.querySelector('.modal-body input')
+        const modalIframe = demoModal.querySelector('.modal-body iframe')
 
-    modalTitle.textContent = `${name} Demo`
-    // modalBodyInput.value = recipient
-    modalIframe.src = url;
-  })
+        modalTitle.textContent = `${name} Demo`
+        // modalBodyInput.value = recipient
+        modalIframe.src = url;
+    })
 }
 
 // #region Animation
@@ -31,7 +31,7 @@ if (demoModal) {
 document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
 
-    document.getElementsByTagName("main")[0].style.marginTop = -navbar.clientHeight + "px";
+    document.documentElement.style.setProperty('--navbar-height', navbar.clientHeight + 'px');
 
     // Initially hide navbar
     const navbarHiddenThreshold = window.innerHeight * 0.8;
@@ -173,7 +173,7 @@ function animateSkillsAppearTimeline() {
         divSkills.innerHTML += skillObjElemStr;
     }
 
-    const skillObjRadius = 170;
+    const skillObjRadius = 160;
     const total = skillObjs.length;
     const angleOffset = -Math.PI / 2;
     for (const [index, skill] of skillObjs.entries()) {
@@ -245,7 +245,7 @@ function animateJsFloatRandomly() {
 }
 
 const skillDescription = document.getElementById("skill-description");
-function GetSkillByElementId(elemId){
+function GetSkillByElementId(elemId) {
     let skill = null;
     let skillIndex = null;
     for (const [currIndex, currSkill] of skillObjs.entries()) {
@@ -283,7 +283,8 @@ function ShowSkillLevelAnimation(skill) {
         return;
     }
 
-    skillDescription.innerHTML = skill.name;
+    skillDescription.innerHTML = "Proficiency";
+    // skillDescription.innerHTML = skill.name;
     SkillBarAnimation(skill.level);
 
     const element = document.getElementById(skill.elemId);
@@ -298,7 +299,7 @@ function ShowSkillLevelAnimation(skill) {
         y: skill.y - 10,
         duration: 300
     });
-    
+
     for (const [currIndex, currSkill] of skillObjs.entries()) {
         if (currSkill.elemId != skill.elemId) {
             let resetOtherSkillsAnim = animate(`#${currSkill.elemId}`, {
